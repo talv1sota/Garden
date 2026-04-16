@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import sql from '@/lib/db';
 import { createSession } from '@/lib/auth';
 
-const USERNAME_RE = /^[a-zA-Z0-9_.\-]{3,30}$/;
+const USERNAME_RE = /^[a-zA-Z0-9_.\-]{1,30}$/;
 const SALT_ROUNDS = 12;
 
 export async function POST(req: NextRequest) {

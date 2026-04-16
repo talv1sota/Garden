@@ -713,24 +713,40 @@ export default function PlannerScreen({ state, dispatch, user, onLogout }: Props
 
           <div className="w-px h-6 bg-wood-light mx-1" />
 
-          {/* File menu — subtle, just an icon */}
+          {/* Save button — cloud save when logged in, file menu as fallback */}
           <div className="relative">
-            <button
-              onClick={() => setFileMenuOpen(v => !v)}
-              className="text-[20px] cursor-pointer px-1 leading-none hover:opacity-80 transition-opacity"
-              title={fileHandle ? `Auto-saving to ${fileHandle.name}` : 'File — save to disk or open a saved garden'}
-              style={{ background: 'transparent', border: 'none' }}
-            >
-              💾
-            </button>
+            {user ? (
+              <button
+                onClick={() => {
+                  fetch('/api/garden', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ state }),
+                  }).then(() => flashSaved()).catch(() => {});
+                }}
+                className="text-[20px] cursor-pointer px-1 leading-none hover:opacity-80 transition-opacity"
+                title="Save to cloud"
+                style={{ background: 'transparent', border: 'none' }}
+              >
+                ☁️
+              </button>
+            ) : (
+              <button
+                onClick={() => setFileMenuOpen(v => !v)}
+                className="text-[20px] cursor-pointer px-1 leading-none hover:opacity-80 transition-opacity"
+                title={fileHandle ? `Auto-saving to ${fileHandle.name}` : 'File — save to disk or open a saved garden'}
+                style={{ background: 'transparent', border: 'none' }}
+              >
+                💾
+              </button>
+            )}
             {/* Transient "Saved!" pop */}
             <div
               className="absolute top-full right-0 mt-1 text-[8px] font-pixel text-grass-dark bg-parchment border border-grass-dark px-2 py-0.5 whitespace-nowrap pointer-events-none transition-opacity duration-200"
               style={{ opacity: showSavedToast ? 1 : 0 }}
             >Saved!</div>
-            {fileMenuOpen && (
+            {!user && fileMenuOpen && (
               <>
-                {/* click-outside shield */}
                 <div className="fixed inset-0 z-40" onClick={() => setFileMenuOpen(false)} />
                 <div className="absolute right-0 top-full mt-1 z-50 min-w-[220px] pixel-panel py-1" style={{ backgroundColor: '#e8dcc0' }}>
                   {fileHandle && (
@@ -764,13 +780,15 @@ export default function PlannerScreen({ state, dispatch, user, onLogout }: Props
               </>
             )}
           </div>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="application/json,.json"
-            onChange={handleFallbackImport}
-            style={{ display: 'none' }}
-          />
+          {!user && (
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="application/json,.json"
+              onChange={handleFallbackImport}
+              style={{ display: 'none' }}
+            />
+          )}
 
           {user && (
             <span className="text-[8px] text-parchment-dark opacity-60">{user.username}</span>
