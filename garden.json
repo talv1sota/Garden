@@ -1,0 +1,77 @@
+{
+  "screen": "planner",
+  "zone": 7.5,
+  "beds": [
+    {
+      "id": "bed-1776274626847",
+      "name": "Main Bed",
+      "type": "raised",
+      "width": 4,
+      "height": 4,
+      "sunExposure": "full-sun",
+      "soilType": "loamy",
+      "cells": [
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          {
+            "plantId": "tomato-beefsteak",
+            "count": 1
+          },
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "x": 20,
+      "y": 20
+    }
+  ],
+  "selectedPlantId": "tomato-beefsteak",
+  "tool": "plant",
+  "inspectedCell": null,
+  "ownedPlants": {
+    "tomato-beefsteak": 1
+  },
+  "plantNotes": {},
+  "customPlants": [],
+  "layout": {
+    "width": 24,
+    "height": 14,
+    "plot": {
+      "x": 1,
+      "y": 1,
+      "w": 10,
+      "h": 10
+    },
+    "boundary": [],
+    "edges": [],
+    "elements": [
+      {
+        "id": "plot-main",
+        "type": "plot",
+        "x": 1,
+        "y": 1,
+        "w": 10,
+        "h": 10,
+        "label": "Garden"
+      }
+    ]
+  }
+}

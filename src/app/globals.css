@@ -1,0 +1,478 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --soil-light: #a0855c;
+  --soil: #8b6f47;
+  --soil-dark: #6b4f2e;
+  --grass-light: #6dbf47;
+  --grass: #4a8f2c;
+  --grass-dark: #2d5a16;
+  --wood-light: #d4a574;
+  --wood: #6b4423;
+  --wood-dark: #4a2f17;
+  --parchment: #fef3c7;
+  --parchment-dark: #fde68a;
+}
+
+* {
+  image-rendering: auto;
+}
+
+body {
+  background: var(--grass-dark);
+  color: #1c1917;
+}
+
+/* ── PIXEL PANEL ─────────────────────────────────── */
+.pixel-panel {
+  background: var(--parchment);
+  border: 4px solid var(--wood);
+  box-shadow:
+    inset -3px -3px 0px var(--wood-light),
+    inset 3px 3px 0px #fff5e6,
+    0 4px 0 0 var(--wood-dark),
+    4px 0 0 0 var(--wood-dark),
+    4px 4px 0 0 var(--wood-dark);
+}
+
+.pixel-panel-dark {
+  background: var(--wood);
+  border: 4px solid var(--wood-dark);
+  color: #fef9ef;
+  box-shadow:
+    inset -3px -3px 0px #5a3319,
+    inset 3px 3px 0px var(--wood-light),
+    0 4px 0 0 #3a1f0e,
+    4px 0 0 0 #3a1f0e,
+    4px 4px 0 0 #3a1f0e;
+}
+
+/* ── PIXEL BUTTON ────────────────────────────────── */
+.pixel-btn {
+  font-family: var(--font-pixel), monospace;
+  padding: 10px 20px;
+  border: 3px solid var(--wood-dark);
+  cursor: pointer;
+  transition: transform 0.1s;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow:
+    0 4px 0 0 var(--wood-dark),
+    inset 0 -3px 0 0 rgba(0,0,0,0.15),
+    inset 0 3px 0 0 rgba(255,255,255,0.2);
+}
+.pixel-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 0 0 var(--wood-dark),
+    inset 0 -3px 0 0 rgba(0,0,0,0.15),
+    inset 0 3px 0 0 rgba(255,255,255,0.2);
+}
+.pixel-btn:active {
+  transform: translateY(2px);
+  box-shadow:
+    0 1px 0 0 var(--wood-dark),
+    inset 0 -3px 0 0 rgba(0,0,0,0.15);
+}
+
+.pixel-btn-primary {
+  background: #4ade80;
+  color: #14532d;
+  border-color: #166534;
+  box-shadow:
+    0 4px 0 0 #14532d,
+    inset 0 -3px 0 0 rgba(0,0,0,0.15),
+    inset 0 3px 0 0 rgba(255,255,255,0.3);
+}
+.pixel-btn-primary:hover {
+  background: #86efac;
+  box-shadow:
+    0 6px 0 0 #14532d,
+    inset 0 -3px 0 0 rgba(0,0,0,0.15),
+    inset 0 3px 0 0 rgba(255,255,255,0.3);
+}
+.pixel-btn-primary:active {
+  transform: translateY(2px);
+  box-shadow:
+    0 1px 0 0 #14532d,
+    inset 0 -3px 0 0 rgba(0,0,0,0.15);
+}
+
+.pixel-btn-danger {
+  background: #fca5a5;
+  color: #7f1d1d;
+  border-color: #991b1b;
+  box-shadow:
+    0 4px 0 0 #7f1d1d,
+    inset 0 -3px 0 0 rgba(0,0,0,0.15),
+    inset 0 3px 0 0 rgba(255,255,255,0.3);
+}
+
+.pixel-btn-small {
+  padding: 4px 10px;
+  font-size: 7px;
+  border-width: 2px;
+  box-shadow: 0 3px 0 0 var(--wood-dark);
+}
+
+/* ── SOIL TEXTURES ───────────────────────────────── */
+.soil-texture {
+  background-color: var(--soil);
+  background-image:
+    radial-gradient(ellipse 3px 2px, var(--soil-dark) 0%, transparent 100%),
+    radial-gradient(ellipse 2px 3px, var(--soil-light) 0%, transparent 100%);
+  background-size: 12px 12px;
+  background-position: 0 0, 6px 6px;
+}
+
+.soil-clay {
+  background-color: #8b4513;
+  background-image:
+    radial-gradient(ellipse 4px 2px, #6b3410 0%, transparent 100%),
+    radial-gradient(ellipse 2px 4px, #a0603d 0%, transparent 100%);
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+}
+
+.soil-sandy {
+  background-color: #c2b280;
+  background-image:
+    radial-gradient(circle 1px, #a89860 0%, transparent 100%),
+    radial-gradient(circle 1px, #d4c898 0%, transparent 100%);
+  background-size: 6px 6px;
+  background-position: 0 0, 3px 3px;
+}
+
+.soil-loamy {
+  background-color: #5c4033;
+  background-image:
+    radial-gradient(ellipse 3px 2px, #4a3228 0%, transparent 100%),
+    radial-gradient(ellipse 2px 2px, #7a5a4a 0%, transparent 100%);
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+}
+
+.soil-silty {
+  background-color: #7a6652;
+  background-image:
+    linear-gradient(90deg, transparent 45%, #6a5642 50%, transparent 55%),
+    linear-gradient(0deg, transparent 45%, #8a7662 50%, transparent 55%);
+  background-size: 8px 8px;
+}
+
+.soil-chalky {
+  background-color: #d3cfc3;
+  background-image:
+    radial-gradient(circle 2px, #bfb9a8 0%, transparent 100%),
+    radial-gradient(circle 1px, #e8e4d8 0%, transparent 100%);
+  background-size: 8px 8px;
+  background-position: 0 0, 4px 4px;
+}
+
+.soil-peaty {
+  background-color: #3d2b1f;
+  background-image:
+    radial-gradient(ellipse 3px 1px, #2d1b0f 0%, transparent 100%),
+    radial-gradient(ellipse 2px 2px, #4d3b2f 0%, transparent 100%);
+  background-size: 9px 9px;
+  background-position: 0 0, 4px 4px;
+}
+
+/* ── GRASS BACKGROUND ────────────────────────────── */
+.grass-bg {
+  background-color: var(--grass);
+  background-image:
+    radial-gradient(circle 1.5px at 30% 40%, var(--grass-dark) 0%, transparent 100%),
+    radial-gradient(circle 1px at 70% 60%, var(--grass-light) 0%, transparent 100%),
+    radial-gradient(circle 1px at 50% 80%, #3d7a22 0%, transparent 100%);
+  background-size: 16px 16px;
+}
+
+/* ── BED BORDERS ─────────────────────────────────── */
+.bed-raised {
+  border: 6px solid var(--wood);
+  box-shadow:
+    inset 0 0 0 3px var(--wood-light),
+    0 4px 0 0 var(--wood-dark),
+    4px 0 0 0 var(--wood-dark),
+    4px 4px 0 0 var(--wood-dark);
+}
+
+.bed-inground {
+  border: 3px dashed var(--wood);
+  box-shadow: 0 2px 0 0 var(--wood-dark);
+}
+
+.bed-pot {
+  border: 5px solid #b87333;
+  border-radius: 0 0 12px 12px;
+  border-top: 7px solid #cd853f;
+  box-shadow:
+    inset 0 0 0 2px #d4956b,
+    0 4px 0 0 #8b5a2b;
+}
+
+/* ── GRID CELL ───────────────────────────────────── */
+.garden-cell {
+  border: 1px solid rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  font-size: 28px;
+}
+.garden-cell:hover {
+  filter: brightness(1.15);
+  z-index: 1;
+}
+
+.garden-cell.companion-good {
+  box-shadow: inset 0 0 0 3px #4ade80;
+  animation: pulse-good 1.5s ease-in-out infinite;
+}
+.garden-cell.companion-bad {
+  box-shadow: inset 0 0 0 3px #f87171;
+  animation: pulse-bad 1.5s ease-in-out infinite;
+}
+.garden-cell.companion-neutral {
+  box-shadow: inset 0 0 0 2px #fbbf24;
+}
+.garden-cell.soil-warning {
+  box-shadow: inset 0 0 0 3px #fb923c;
+}
+.garden-cell.light-warning::after {
+  content: '☁️';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  font-size: 10px;
+}
+
+@keyframes pulse-good {
+  0%, 100% { box-shadow: inset 0 0 0 3px #4ade80; }
+  50% { box-shadow: inset 0 0 8px 3px rgba(74, 222, 128, 0.6); }
+}
+@keyframes pulse-bad {
+  0%, 100% { box-shadow: inset 0 0 0 3px #f87171; }
+  50% { box-shadow: inset 0 0 8px 3px rgba(248, 113, 113, 0.6); }
+}
+
+/* ── PLANT IN CELL ───────────────────────────────── */
+.planted-cell {
+  animation: sprout 0.3s ease-out;
+}
+.planted-cell:hover .plant-emoji {
+  animation: wiggle 0.4s ease-in-out;
+}
+
+/* Per-sq-ft count badge */
+.cell-count {
+  position: absolute;
+  bottom: 1px;
+  right: 3px;
+  font-size: 7px;
+  font-family: var(--font-pixel), monospace;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.6);
+  line-height: 1;
+}
+
+/* Spacing conflict warning */
+.cell-spacing-warn {
+  position: absolute;
+  top: 0;
+  left: 1px;
+  font-size: 10px;
+  line-height: 1;
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
+}
+
+.spacing-conflict {
+  outline: 2px dashed #f59e0b;
+  outline-offset: -2px;
+}
+
+/* Spacing zone visualization when hovering with a plant selected */
+.spacing-center {
+  outline: 3px solid rgba(96, 165, 250, 0.85);
+  outline-offset: -3px;
+  background-color: rgba(96, 165, 250, 0.2) !important;
+  z-index: 2;
+}
+.spacing-zone {
+  outline: 2px dashed rgba(96, 165, 250, 0.55);
+  outline-offset: -2px;
+  background-color: rgba(96, 165, 250, 0.08) !important;
+}
+
+/* ── INVENTORY ───────────────────────────────────── */
+.inventory-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  transition: all 0.15s;
+  font-size: 11px;
+}
+.inventory-item:hover {
+  background: var(--parchment-dark);
+  border-color: var(--wood-light);
+}
+.inventory-item.selected {
+  background: #bbf7d0;
+  border-color: #166534;
+  box-shadow: inset 0 0 0 1px #4ade80;
+}
+.inventory-item .item-emoji {
+  font-size: 20px;
+  width: 28px;
+  text-align: center;
+}
+
+/* ── SCROLLBAR — hidden but still scrollable ──────── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--wood);
+  border-radius: 4px;
+  border: 1px solid var(--wood-dark);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--wood-light);
+}
+::-webkit-scrollbar-track {
+  background: var(--parchment);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--wood) var(--parchment);
+}
+
+/* ── TOOL ACTIVE STATES ──────────────────────────── */
+.tool-btn {
+  padding: 6px 12px;
+  border: 3px solid var(--wood-dark);
+  background: var(--parchment);
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.1s;
+}
+.tool-btn:hover {
+  background: var(--parchment-dark);
+}
+.tool-btn.active {
+  background: #bbf7d0;
+  border-color: #166534;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+  transform: translateY(1px);
+}
+
+/* ── SELECT / INPUT STYLES ───────────────────────── */
+.pixel-select, .pixel-input {
+  font-family: var(--font-pixel), monospace;
+  font-size: 10px;
+  padding: 8px 12px;
+  border: 3px solid var(--wood);
+  background: #fff;
+  color: #1c1917;
+  outline: none;
+}
+.pixel-select:focus, .pixel-input:focus {
+  border-color: #166534;
+  box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.3);
+}
+
+/* ── FLOATING DECORATIONS ────────────────────────── */
+.deco-plant {
+  display: inline-block;
+  font-size: 28px;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ── TAGS ────────────────────────────────────────── */
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 8px;
+  font-family: var(--font-pixel), monospace;
+  border: 2px solid;
+  white-space: nowrap;
+}
+.tag-green {
+  background: #dcfce7;
+  border-color: #166534;
+  color: #14532d;
+}
+.tag-red {
+  background: #fee2e2;
+  border-color: #991b1b;
+  color: #7f1d1d;
+}
+.tag-blue {
+  background: #dbeafe;
+  border-color: #1e40af;
+  color: #1e3a5f;
+}
+.tag-yellow {
+  background: #fef9c3;
+  border-color: #a16207;
+  color: #713f12;
+}
+.tag-orange {
+  background: #ffedd5;
+  border-color: #c2410c;
+  color: #7c2d12;
+}
+.tag-purple {
+  background: #f3e8ff;
+  border-color: #7c3aed;
+  color: #5b21b6;
+}
+
+/* ── CATEGORY TABS ───────────────────────────────── */
+.cat-tab {
+  padding: 4px 4px;
+  font-size: 8px;
+  font-family: var(--font-pixel), monospace;
+  cursor: pointer;
+  border: 2px solid var(--wood);
+  border-bottom: none;
+  border-right: none;
+  background: var(--parchment-dark);
+  color: var(--wood-dark);
+  transition: all 0.1s;
+}
+.cat-tab:last-child {
+  border-right: 2px solid var(--wood);
+}
+.cat-tab:hover {
+  background: var(--parchment);
+}
+.cat-tab.active {
+  background: var(--parchment);
+  border-bottom: 2px solid var(--parchment);
+  margin-bottom: -2px;
+  z-index: 1;
+  position: relative;
+}
+
+/* ── COMPANION LEGEND ────────────────────────────── */
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border: 2px solid;
+  display: inline-block;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media (max-width: 900px) {
+}
