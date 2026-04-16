@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import sql from '@/lib/db';
 import { createSession } from '@/lib/auth';
 
-const USERNAME_RE = /^[a-zA-Z0-9_]{3,30}$/;
+const USERNAME_RE = /^[a-zA-Z0-9_.\-]{3,30}$/;
 const SALT_ROUNDS = 12;
 
 export async function POST(req: NextRequest) {
@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Username and password required.' }, { status: 400 });
     }
     if (!USERNAME_RE.test(username)) {
-      return NextResponse.json({ error: 'Username must be 3-30 chars: letters, numbers, underscores.' }, { status: 400 });
+      return NextResponse.json({ error: 'Username must be 3-30 chars: letters, numbers, underscores, dots, or hyphens.' }, { status: 400 });
     }
     if (password.length < 8 || password.length > 128) {
       return NextResponse.json({ error: 'Password must be 8-128 characters.' }, { status: 400 });
