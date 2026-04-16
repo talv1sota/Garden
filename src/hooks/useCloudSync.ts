@@ -75,7 +75,8 @@ export function useCloudSync(state: GardenState, dispatch: Dispatch<GardenAction
   const logout = useCallback(async () => {
     await fetch('/api/auth/logout', { method: 'POST' });
     setUser(null);
-  }, []);
+    dispatch({ type: 'RESET' });
+  }, [dispatch]);
 
   return { user, loading, login, register, logout };
 }
