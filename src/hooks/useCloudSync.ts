@@ -49,11 +49,11 @@ export function useCloudSync(state: GardenState, dispatch: Dispatch<GardenAction
     return null;
   }, []);
 
-  const register = useCallback(async (username: string, password: string): Promise<string | null> => {
+  const register = useCallback(async (username: string, password: string, inviteCode?: string): Promise<string | null> => {
     const res = await fetch('/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ username, password, inviteCode }),
     });
     const data = await res.json();
     if (!res.ok) return data.error || 'Registration failed.';

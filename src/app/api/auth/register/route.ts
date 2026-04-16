@@ -18,9 +18,15 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const username = typeof body.username === 'string' ? body.username.trim() : '';
     const password = typeof body.password === 'string' ? body.password : '';
+    const inviteCode = typeof body.inviteCode === 'string' ? body.inviteCode.trim() : '';
 
     if (!username || !password) {
       return NextResponse.json({ error: 'Username and password required.' }, { status: 400 });
+    }
+
+    const validCode = process.env.INVITE_CODE;
+    if (!validCode || inviteCode !== validCode) {
+      return NextResponse.json({ error: 'Valid invite code required.' }, { status: 403 });
     }
     if (!USERNAME_RE.test(username)) {
       return NextResponse.json({ error: 'Username must be 3-30 chars: letters, numbers, underscores, dots, or hyphens.' }, { status: 400 });

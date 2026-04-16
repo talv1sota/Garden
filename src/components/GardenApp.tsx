@@ -203,6 +203,7 @@ export default function GardenApp() {
   const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
   const [authUser, setAuthUser] = useState('');
   const [authPass, setAuthPass] = useState('');
+  const [authInvite, setAuthInvite] = useState('');
   const [authError, setAuthError] = useState('');
   const [authBusy, setAuthBusy] = useState(false);
 
@@ -212,11 +213,12 @@ export default function GardenApp() {
     const trimmed = authUser.trim();
     const err = authMode === 'login'
       ? await login(trimmed, authPass)
-      : await register(trimmed, authPass);
+      : await register(trimmed, authPass, authInvite.trim());
     setAuthBusy(false);
     if (err) { setAuthError(err); return; }
     setAuthUser('');
     setAuthPass('');
+    setAuthInvite('');
   };
 
   useEffect(() => {
@@ -334,6 +336,16 @@ export default function GardenApp() {
                 autoComplete={authMode === 'register' ? 'new-password' : 'current-password'}
                 onKeyDown={e => { if (e.key === 'Enter') handleAuth(); }}
               />
+              {authMode === 'register' && (
+                <input
+                  type="text"
+                  placeholder="Invite code"
+                  value={authInvite}
+                  onChange={e => setAuthInvite(e.target.value)}
+                  className="pixel-input w-full text-[9px] mb-2"
+                  autoComplete="off"
+                />
+              )}
               {authError && <p className="text-[8px] text-red-600 mb-2">{authError}</p>}
               <button
                 onClick={handleAuth}
