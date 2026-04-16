@@ -783,7 +783,16 @@ export default function PlannerScreen({ state, dispatch, user, onLogout }: Props
           />
 
           {user && (
-            <span className="text-[8px] text-parchment-dark opacity-60">{user.username}</span>
+            <>
+              <span className="text-[8px] text-parchment-dark opacity-60">{user.username}</span>
+              {onLogout && (
+                <button
+                  onClick={onLogout}
+                  className="text-[8px] text-parchment-dark opacity-60 hover:opacity-100 cursor-pointer underline"
+                  style={{ background: 'transparent', border: 'none' }}
+                >log out</button>
+              )}
+            </>
           )}
 
         </div>
