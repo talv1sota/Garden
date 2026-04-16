@@ -74,6 +74,7 @@ export function useCloudSync(state: GardenState, dispatch: Dispatch<GardenAction
 
   const logout = useCallback(async () => {
     await fetch('/api/auth/logout', { method: 'POST' });
+    try { localStorage.removeItem('pixel-garden-planner-v2'); } catch {}
     setUser(null);
     dispatch({ type: 'RESET' });
   }, [dispatch]);
