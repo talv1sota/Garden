@@ -5,7 +5,9 @@ import { createSession } from '@/lib/auth';
 
 export async function POST(req: NextRequest) {
   try {
-    const { username, password } = await req.json();
+    const body = await req.json();
+    const username = typeof body.username === 'string' ? body.username.trim() : '';
+    const password = typeof body.password === 'string' ? body.password : '';
 
     if (!username || !password) {
       return NextResponse.json({ error: 'Username and password required.' }, { status: 400 });

@@ -209,9 +209,10 @@ export default function GardenApp() {
   const handleAuth = async () => {
     setAuthError('');
     setAuthBusy(true);
+    const trimmed = authUser.trim();
     const err = authMode === 'login'
-      ? await login(authUser, authPass)
-      : await register(authUser, authPass);
+      ? await login(trimmed, authPass)
+      : await register(trimmed, authPass);
     setAuthBusy(false);
     if (err) { setAuthError(err); return; }
     setAuthUser('');
@@ -323,9 +324,11 @@ export default function GardenApp() {
           )}
 
           <div className="flex flex-col gap-4 items-center">
-            <button onClick={newGarden} className="pixel-btn pixel-btn-primary text-[10px] w-56">
-              🌱 New Garden
-            </button>
+            {user && (
+              <button onClick={newGarden} className="pixel-btn pixel-btn-primary text-[10px] w-56">
+                🌱 New Garden
+              </button>
+            )}
             {hasSave && (
               <button onClick={loadSave} className="pixel-btn text-[10px] w-56 bg-parchment-dark">
                 📋 Load Saved
