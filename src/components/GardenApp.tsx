@@ -249,12 +249,24 @@ export default function GardenApp() {
     }
   }, [state]);
 
-  const loadSave = useCallback(() => {
+  const loadSave = useCallback(async () => {
+    // Try cloud first if logged in
+    if (user) {
+      try {
+        const res = await fetch('/api/garden');
+        const d = await res.json();
+        if (d.garden?.state && Array.isArray(d.garden.state.beds)) {
+          dispatch({ type: 'LOAD_STATE', state: d.garden.state });
+          return;
+        }
+      } catch {}
+    }
+    // Fall back to localStorage
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) dispatch({ type: 'LOAD_STATE', state: JSON.parse(saved) });
     } catch {}
-  }, []);
+  }, [user]);
 
   const newGarden = useCallback(() => {
     try { localStorage.removeItem(STORAGE_KEY); } catch {}

@@ -19,19 +19,8 @@ export function useCloudSync(state: GardenState, dispatch: Dispatch<GardenAction
       .finally(() => setLoading(false));
   }, []);
 
-  // Load garden from cloud after login
-  useEffect(() => {
-    if (!user) return;
-    fetch('/api/garden')
-      .then(r => r.json())
-      .then(d => {
-        if (d.garden?.state && typeof d.garden.state === 'object' && Array.isArray(d.garden.state.beds)) {
-          justLoadedRef.current = true;
-          dispatch({ type: 'LOAD_STATE', state: d.garden.state });
-        }
-      })
-      .catch(() => {});
-  }, [user, dispatch]);
+  // Cloud garden is loaded manually via "Load Saved" on the welcome screen,
+  // not automatically on login — so the user can choose new vs. saved.
 
   // Auto-save to cloud on state changes (debounced 800ms)
   useEffect(() => {
