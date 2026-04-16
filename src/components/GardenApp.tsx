@@ -227,6 +227,19 @@ export default function GardenApp() {
     setLoaded(true);
   }, []);
 
+  // Check for cloud save when user logs in
+  useEffect(() => {
+    if (!user) { setHasSave(false); return; }
+    fetch('/api/garden')
+      .then(r => r.json())
+      .then(d => {
+        if (d.garden?.state && Array.isArray(d.garden.state.beds) && d.garden.state.beds.length > 0) {
+          setHasSave(true);
+        }
+      })
+      .catch(() => {});
+  }, [user]);
+
   // Auto-save to localStorage when in planner
   useEffect(() => {
     if (state.screen === 'planner' && state.beds.length > 0) {
